@@ -19,8 +19,9 @@ class App extends React.Component {
   }
   state = {
     map:{},
-    pos: {},
-    places: [{name:'Ginos',rating:3.8,vicinity:"Ronda de Valencia, 8, Madrid",opening_hours:{open_now:true},icon:"https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",geometry:{location:{lat:40.391705,lng:-3.7134189}}}],
+    // pos: {},
+    // places: [{name:'Ginos',rating:3.8,vicinity:"Ronda de Valencia, 8, Madrid",opening_hours:{open_now:true},icon:"https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",geometry:{location:{lat:40.391705,lng:-3.7134189}}}],
+    places: [],
     storedDetails:[],
     markers:[],
     currentPlace: Place,
@@ -97,7 +98,7 @@ class App extends React.Component {
     })
   }
   secondStep = () => {
-    // console.log('state location: lat:' + this.state.pos.lat + 'lng: ' + this.state.pos.lng);
+    console.log('state location: lat:' + this.state.pos.lat + 'lng: ' + this.state.pos.lng);
     this.setState({
       loaded: true
     })
@@ -108,7 +109,7 @@ class App extends React.Component {
 
   doTheThing = (callback) => {
     navigator.geolocation.getCurrentPosition(pos => {
-    // console.log(pos.coords)
+    console.log(pos.coords)
     this.setState({
       pos: {
         lat: pos.coords.latitude,

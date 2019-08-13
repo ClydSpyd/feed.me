@@ -2,7 +2,7 @@ import React from 'react'
 import pic from '../assets/knifeAndFork2.png'
 import markerPin from '../assets/markerPin2.png'
 import markerPinHover from '../assets/markerPinHoverPRP2.png'
-// import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import halfStar from '../assets/stars/0.5TurqB.png'
 import oneStar from '../assets/stars/1TurqB.png'
 import oneAndStars from '../assets/stars/1.5TurqB.png'
@@ -16,18 +16,14 @@ import fiveStars from '../assets/stars/5TurqB.png'
 
 const google = window.google
 var d = new Date().getDay()-1%6;
-// var e = 0;
-// var f = e+6;
-// var g = f%7
 var  number=0;
 var stars = [halfStar,oneStar,oneAndStars,twoStars,twoAndStars,threeStars,threeAndStars,fourStars,fourAndStars,fiveStars]
-// var that = this
 
 class ListItem extends React.Component {
   constructor(props){
     super(props)
     this.checkForDeetz = this.checkForDeetz.bind(this)
-    this.handleDetails = this.handleDetails.bind(this)
+    // this.handleDetails = this.handleDetails.bind(this)
     this.click = this.click.bind(this)
     this.getDeetz = this.getDeetz.bind(this)
     this.addItem = this.addItem.bind(this)
@@ -39,33 +35,31 @@ class ListItem extends React.Component {
       newToStorage: true
     }
   }
+
+  /// ADD NEW RESTAURANT DETAILS TO STATE + LOCAL STORAGE  -- used in getDeetz()  ///
+
   addItem = (id, details) => {
     var array = this.props.storedDetails;
+    var that = this
     array.forEach(item => {
       item.id==id ? this.setState({newToStorage:false }): this.setState({newToStorage:true})
     })
-    var that = this
     setTimeout(function(){
       if (that.state.newToStorage){
-    var newItem = {id:id,details:details};
-    array.push(newItem);
-    console.log('new push')}
-    that.props.handleStoredDetails(array)
-    },100)
-    // console.log(array)
-    // console.log(array)
-    // console.log('ID: ' + id)
-    // console.log(details)
-  }
+      var newItem = {id:id,details:details};
+      array.push(newItem);
+      console.log('new push')}
+      that.props.handleStoredDetails(array)
+      },100)
+    }
 
-  handleDetails = (deetz) => {
-    console.log(deetz)
-    this.setState({details:deetz})
-  }
-  test = (thing, thing2) => {
-    console.log('TEST ID: ' + thing);
-    console.log(thing2)
-  }
+  // handleDetails = (deetz) => {
+  //   console.log(deetz)
+  //   this.setState({details:deetz})
+  // }
+
+
+  /// CHECK IF RESTAURANT DETAILS ARE STORED LOCALLY OR IF AN API CALL IS NECESSARY -- used in click() ///
 
   checkForDeetz = (id, map) => {
     this.props.storedDetails.forEach(place => {
@@ -80,10 +74,10 @@ class ListItem extends React.Component {
         that.getDeetz(id,map)
       }
     },300)
-    
-    // IF FROM STORED IS NOT TRUE this.getDeetz()
-    
   }
+
+
+  /// PULL RESTAURANT DETAILS FROM API, ADD TO STATE AND LOCAL STORAGE ///
 
   getDeetz = (id,map) => {
     var that = this
@@ -98,8 +92,6 @@ class ListItem extends React.Component {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       that.setState({details:place})
       that.addItem(id, place)
-      // console.log(id)
-      // console.log(that.state.details)
     } else {
       console.log(status)}
     }
@@ -111,11 +103,10 @@ class ListItem extends React.Component {
     const myId = this.props.place.id
     const myIdB = this.props.place.id+'B'
     var thisOne = document.getElementById(myId)
-    // thisOne.classList.toggle('itemWrapper')
     thisOne.classList.toggle('itemExpanded')
     thisOne.classList.toggle('itemWrapper')
     this.checkForDeetz(passId,this.props.map)
-    console.log('passID: '+ passId)
+    // console.log('passID: '+ passId)
     if (this.state.isExpanded){
       this.setState({isExpanded:false})
         var expandedData = document.getElementById(myIdB)
@@ -140,7 +131,6 @@ class ListItem extends React.Component {
     for(let i=0; i<this.props.markers.length;i++){
       if(this.props.markers[i].id===this._reactInternalFiber.key){
         var marker = this.props.markers[i];
-        // var contentString = `<p style='color: blueviolet'>${marker.name}</p>`
         marker.setIcon(markerPinHover);
         marker.setAnimation(google.maps.Animation.BOUNCE)
         const myId = this.props.place.id
@@ -195,29 +185,20 @@ class ListItem extends React.Component {
     this.setStars(this.props.place.rating)
     var numStars = number
     this.setState({numStars})
-    console.log(this.props.place.photos)
-    // if(d==6){e=0} else {e=d+1}
-    // console.log('e = '+e)
-    // console.log('g = '+g)
-    console.log('d = '+d)
-    // var array = this.props.storedDetails;
-    // array.push('hai')
-    // console.log(array)
   }
 
   render() {
     if(!this.state.isExpanded){return (
       <div id={this.props.place.id} onMouseEnter={this.enter} onMouseLeave={this.leave} onClick={this.click} className='itemWrapper'>
-              <div className="detailsInnerWrap">
-                <img className='itemImage'src={pic} alt="" srcSet=""/>
-                <div className="itemDetails">
-                  <h5 className='itemName'>{this.props.place.name}</h5>
-                  <p className='itemLoc'>{this.props.place.vicinity}</p>
-                  {/* <p className='itemOpen'>{place.opening_hours.open_now ? 'open now!' : 'closed'}</p> */}
-                  {this.props.place.opening_hours ? <p className='itemOpen'>{this.props.place.opening_hours.open_now?'open now!' : 'closed'}</p> : null}
-                </div>
-              </div>
-            </div>
+        <div className="detailsInnerWrap">
+          <img className='itemImage'src={pic} alt="" srcSet=""/>
+          <div className="itemDetails">
+            <h5 className='itemName'>{this.props.place.name}</h5>
+            <p className='itemLoc'>{this.props.place.vicinity}</p>
+            {this.props.place.opening_hours ? <p className='itemOpen'>{this.props.place.opening_hours.open_now?'open now!' : 'closed'}</p> : null}
+          </div>
+        </div>
+      </div>
     )}
     else {return (
       <div id={this.props.place.id} onMouseEnter={this.enter} onMouseLeave={this.leave} onClick={this.click} className='itemWrapper'>

@@ -19,15 +19,26 @@ hr{
   align-items: center;
 }
 .searchLabel {
+  border: 2px solid white;
   font-weight: bold;
   cursor: pointer;
   position: relative;
   color: white;
-  padding: 23px 45px;
+  padding: 20px 45px;
   /* width: 300px; */
   /* height: 60px; */
-  background-color: #b20ee4;
+  background-color: #05dae6;
   bottom: 2px;
+}
+#nearMeButton{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  color: white;
+  padding: 18px 45px;
+  background-color: #b20ee4;
 }
 .landingLogo{
   background:white;
@@ -61,6 +72,20 @@ hr{
   height:100vh;
 }
 
+
+.mapPlaceholder{
+  position: absolute;
+  color: #03e9f5;
+  /* text-align: center;
+  line-height: 90vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:90vh;
+  width:100%;
+  background-color: rgba(255, 255, 255, 0.247);
+}
 .mapInnerWrapper{
   border:3px solid #03e9f5;
   margin-top:100px;
@@ -175,9 +200,9 @@ hr{
 .itemWrapper{
   cursor: pointer;
   padding: 0 5px;
-  border-bottom:1px solid rgb(0, 195, 255);;
+  /* border-bottom:1px solid rgb(0, 195, 255); */
   background: white;
-  margin: 0px auto 1px auto;
+  margin: 0px auto 2px auto;
   /* border:red 1px solid; */
   flex-direction: column;
   display: flex;

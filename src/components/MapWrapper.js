@@ -1,6 +1,7 @@
 import React from 'react';
 import MapComp from './Map'
 import RightBar from './RightBar'
+import ripple from '../assets/ripple2.gif'
 
 class MapWrapper extends React.Component {
   constructor(props) {
@@ -11,39 +12,10 @@ class MapWrapper extends React.Component {
       loaded: false
     }
   }
-
-  // secondStep = () => {
-  //   // console.log('state location: lat:' + this.state.pos.lat + 'lng: ' + this.state.pos.lng);
-  //   this.setState({
-  //     loaded: true
-  //   })
-  // }
-
-  // doTheThing = (callback) => {
-  //   navigator.geolocation.getCurrentPosition(pos => {
-  //   // console.log(pos.coords)
-  //   this.setState({
-  //     pos: {
-  //       lat: pos.coords.latitude,
-  //       lng: pos.coords.longitude
-  //     }
-  //   })
-  //   callback()
-  // })}
-
-
-  
-  // content() {
-  //   return (
-  //     <div >
-  //       <h1>{this.state.pos}</h1>
-  //     </div>
-  //   )
-  // }
   
   render() {
 
-    
+    if(this.props.pos){
       return(
         <React.Fragment>
 
@@ -73,7 +45,16 @@ class MapWrapper extends React.Component {
        
       </div>
       </React.Fragment>
-      )
+      )} else{
+        return(
+          <div className="mapInnerWrapper">
+            <div className="mapPlaceholder">
+              <img src={ripple} alt="" srcset=""/>
+              <span>awaiting geolocation data...</span>
+            </div>
+          </div>
+        )
+      }
   }
 }
 

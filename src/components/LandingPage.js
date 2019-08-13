@@ -10,6 +10,7 @@ class LandingPage extends React.Component{
                <input type="text" name="searchTextInput" id="searchTextInput" placeholder='enter location'/>
                <label className='searchLabel' htmlFor="searchTextInput">search</label>
              </form>
+             <input id='nearMeButton'type="button" value="search near me"/>
        </div>
     )
   }

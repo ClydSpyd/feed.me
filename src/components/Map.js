@@ -4,6 +4,7 @@ import customStyles from './customStyles.json'
 import samples from '../samples.json'
 import markerPin from '../assets/markerPin2.png'
 import markerPinHover from '../assets/markerPinHoverPRP2.png'
+import ripple from '../assets/ripple2.gif'
 
 const style = {
   width: '100%',
@@ -25,8 +26,25 @@ export class MapComp extends React.Component {
     currentCenter: {}
   }
 
-//======GENERATE AND DISPLAY MARKERS=======//
+ // ===CREATE MARKER===//
+ dropPin = (position, timeout, id, itemID, index,name, map, props) => {
+  window.setTimeout(function() {
+    markers.push(new google.maps.Marker({
+        props:props,
+        name:name,
+        id:id,
+        itemID:itemID,
+        index: index,
+        position: position,
+        map: map,
+        icon: markerPin,
+        scale:0.2,
+      animation: google.maps.Animation.DROP
+    }));
+  }, timeout);
+}
 
+//======DISPLAY MARKERS, ADD LISTENERS TO MARKERS=======//
   dropPinsNotBombs = (map) => {
     for (var i = 0; i < this.props.places.length; i++) {
     var lat
@@ -37,71 +55,44 @@ export class MapComp extends React.Component {
     else {lng=this.props.places[i].geometry.location.lng}
     this.dropPin({lat: lat, lng: lng}, i * 50, this.props.places[i].place_id, this.props.places[i].id, i,this.props.places[i].name, map,this.props)}
     this.props.handleMarkers(markers);
-    // console.log(markers);
-      setTimeout(function(map){
-        markers.forEach(marker =>{
-          var contentString = '';
-          var infowindow;
-          // console.log('marker: ' + marker.name)
+    setTimeout(function(map){
+      markers.forEach(marker =>{
+        var contentString = '';
+        var infowindow;
+    
+        marker.addListener('mouseover', function() {  
+        contentString = `<p style='color: blueviolet'>${marker.name}</p>`
+        infowindow = new google.maps.InfoWindow({content: contentString});
+        infowindow.open(map, marker);
+        marker.setIcon(markerPinHover);
+        console.log(marker)
+        console.log(document.getElementById(marker.itemID))
+        document.getElementById(marker.itemID).classList.toggle('zoom')
+      });
       
-            marker.addListener('mouseover', function() {  
-            // markerID = marker.id
-            contentString = `<p style='color: blueviolet'>${marker.name}</p>`
-            infowindow = new google.maps.InfoWindow({content: contentString});
-            // infowindow.className='infowindow';
-            infowindow.open(map, marker);
-            marker.setIcon(markerPinHover);
-            console.log(marker)
-            console.log(document.getElementById(marker.itemID))
-            document.getElementById(marker.itemID).classList.toggle('zoom')
-          });
-        
-          marker.addListener('mouseout', function() {
-          infowindow.close(map, marker);
-          marker.setIcon(markerPin)
-          document.getElementById(marker.itemID).classList.toggle('zoom')
-          });
-        
-          marker.addListener('click', function(){
-            
-            console.log(document.getElementById(marker.itemID))
-            var expandedItems = (Array.from(document.querySelectorAll('.itemExpanded')))
-            expandedItems.forEach(item => {
-              item.click()
-            })
-            document.getElementById(marker.itemID).click()
-            setTimeout(function(){
-              var topPos = document.getElementById(marker.itemID).offsetTop;
-              // document.getElementById('RightBar').scrollTop = topPos;
-              document.getElementById('RightBar').scrollTo({top: topPos-9, behavior: 'smooth'})
-              // document.getElementById(marker.itemID).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
-              // setTimeout(function(){document.getElementById('RightBar').scrollBy({top:-10, left:0, behavior:'smooth'})},350)
-              // document.getElementsByClassName('RightBar').scrollBy(0, -10)
-            },250)
-          })
-        
+        marker.addListener('mouseout', function() {
+        infowindow.close(map, marker);
+        marker.setIcon(markerPin)
+        document.getElementById(marker.itemID).classList.toggle('zoom')
+      });
+      
+      marker.addListener('click', function(){
+        console.log(document.getElementById(marker.itemID))
+        var expandedItems = (Array.from(document.querySelectorAll('.itemExpanded')))
+        expandedItems.forEach(item => {
+          item.click()
         })
-        // console.log(markers)
-      },900)
+        document.getElementById(marker.itemID).click()
+        setTimeout(function(){
+          var topPos = document.getElementById(marker.itemID).offsetTop;
+          document.getElementById('RightBar').scrollTo({top: topPos-9, behavior: 'smooth'})
+          // document.getElementById(marker.itemID).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+        },250)})
+      })
+    },900)
   }
-  
-   dropPin = (position, timeout, id, itemID, index,name, map, props) => {
-    window.setTimeout(function() {
-      markers.push(new google.maps.Marker({
-          props:props,
-          name:name,
-          id:id,
-          itemID:itemID,
-          index: index,
-          position: position,
-          map: map,
-          icon: markerPin,
-          scale:0.2,
-        animation: google.maps.Animation.DROP
-      }));
-    }, timeout);
-  }
-  
+
+  //=====CLEAR MARKERS FROM MAP =====//
   clearMarkers = () => {
     for (let i = 0; i < markers.length; i++) {
       if (markers[i]) {
@@ -110,7 +101,7 @@ export class MapComp extends React.Component {
     markers = [];
   }
   
-  // ===GET RESTAURANTS FROM GOOGLE MAPS AND SET THEM TO APP STATE===//
+  // ===GET BASIC RESTAURANT DETAILS FROM API AND SET TO APP STATE===//
 
   getPlaces = (map, mapProps) => {
     this.clearMarkers()
@@ -133,13 +124,10 @@ export class MapComp extends React.Component {
   }
 
 
-
-  //======LOAD SAMPLES FROM LOCAL JSON========//
+  //======LOAD SAMPLES FROM LOCAL JSON, PUSH TO APP STATE========//
 
   loadSamples = (samples) => {
-    for (var i = 0; i < samples.length; i++) 
-    {
-      // console.log('res: ' + samples[i].name); 
+    for (var i = 0; i < samples.length; i++) {
       restaurants.push(samples[i])}
     setTimeout(this.props.handlePlaces.bind(null, restaurants), 500);
   }
@@ -155,7 +143,6 @@ export class MapComp extends React.Component {
     this.setState({
       currentCenter
     })
-    // console.log(currentCenter)
   }
 
 
@@ -165,7 +152,6 @@ export class MapComp extends React.Component {
     map.setOptions({
       styles: customStyles
     })
-    // console.log('set style')
   }
 
   //=====GET MORE RESTAURANTS/SET CENTER AFTER SCROLL====//
@@ -198,12 +184,11 @@ export class MapComp extends React.Component {
     }
 
   render() {
-    
   return (
-
     <Map
       places={this.props.places}
       initialCenter={{lat: this.props.pos.lat, lng:this.props.pos.lng+0.00035}} 
+      // initialCenter={{lat: 51.4545, lng:2}} 
       google={this.props.google} 
       zoom={19} 
       style={style} 
@@ -227,6 +212,8 @@ export class MapComp extends React.Component {
        />  
         
     </Map>
-  );}}
+  )
+  
+  }}
 
 export default GoogleApiWrapper({apiKey: ('AIzaSyDlQE9vOQFWaa6ZeidzikJq9Ry0PpO6gzk')})(MapComp)
