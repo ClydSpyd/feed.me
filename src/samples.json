@@ -16,7 +16,7 @@
     "id": "097b2e19f90fd44c79a3b91be4ade097078820ab",
     "name": "Pui's Thai Tapas",
     "opening_hours": {
-      "open_now": true
+      "open_now": false
     },
     "photos": [
       {
@@ -42,7 +42,7 @@
       "point_of_interest",
       "establishment"
     ],
-    "user_ratings_total": 841,
+    "user_ratings_total": 847,
     "vicinity": "Calle José Antonio de Armona, 7, Madrid",
     "html_attributions": []
   },
@@ -90,8 +90,54 @@
       "point_of_interest",
       "establishment"
     ],
-    "user_ratings_total": 570,
+    "user_ratings_total": 574,
     "vicinity": "Paseo de Santa María de la Cabeza, 38, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4046498,
+        "lng": -3.6961572999999817
+      },
+      "viewport": {
+        "south": 40.4032745197085,
+        "west": -3.6974592302915426,
+        "north": 40.4059724802915,
+        "east": -3.694761269708465
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "04c23eb27bd7a25d87670092cbce6a0a706125f6",
+    "name": "KUSHURO GASTRO BAR",
+    "opening_hours": {
+      "open_now": true
+    },
+    "photos": [
+      {
+        "height": 810,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/104990265396547611018/photos\">KUSHURO GASTRO BAR</a>"
+        ],
+        "width": 1440
+      }
+    ],
+    "place_id": "ChIJ75a5WtcnQg0RvKy1LZ9sfe4",
+    "plus_code": {
+      "compound_code": "C833+VG Madrid, Spain",
+      "global_code": "8CGRC833+VG"
+    },
+    "rating": 4.9,
+    "reference": "ChIJ75a5WtcnQg0RvKy1LZ9sfe4",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 10,
+    "vicinity": "Paseo de Santa María de la Cabeza, 32, local 4, Madrid",
     "html_attributions": []
   },
   {
@@ -145,38 +191,35 @@
   {
     "geometry": {
       "location": {
-        "lat": 40.4046498,
-        "lng": -3.6961572999999817
+        "lat": 40.4043328,
+        "lng": -3.695333699999992
       },
       "viewport": {
-        "south": 40.4032745197085,
-        "west": -3.6974592302915426,
-        "north": 40.4059724802915,
-        "east": -3.694761269708465
+        "south": 40.40293096970851,
+        "west": -3.696687530291456,
+        "north": 40.4056289302915,
+        "east": -3.693989569708492
       }
     },
     "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-    "id": "04c23eb27bd7a25d87670092cbce6a0a706125f6",
-    "name": "KUSHURO GASTRO BAR",
-    "opening_hours": {
-      "open_now": true
-    },
+    "id": "7076acce2a6f6e3d83a8757a86d7cfc8fea15d34",
+    "name": "Las Delicias Tapas, Reciones, Comida",
     "photos": [
       {
-        "height": 810,
+        "height": 675,
         "html_attributions": [
-          "<a href=\"https://maps.google.com/maps/contrib/104990265396547611018/photos\">KUSHURO GASTRO BAR</a>"
+          "<a href=\"https://maps.google.com/maps/contrib/110999896304381342846/photos\">Las Delicias Tapas, Reciones, Comida</a>"
         ],
-        "width": 1440
+        "width": 1200
       }
     ],
-    "place_id": "ChIJ75a5WtcnQg0RvKy1LZ9sfe4",
+    "place_id": "ChIJSabsSi4mQg0Rde3BWowv4rs",
     "plus_code": {
-      "compound_code": "C833+VG Madrid, Spain",
-      "global_code": "8CGRC833+VG"
+      "compound_code": "C833+PV Madrid, Spain",
+      "global_code": "8CGRC833+PV"
     },
-    "rating": 4.9,
-    "reference": "ChIJ75a5WtcnQg0RvKy1LZ9sfe4",
+    "rating": 4.7,
+    "reference": "ChIJSabsSi4mQg0Rde3BWowv4rs",
     "scope": "GOOGLE",
     "types": [
       "restaurant",
@@ -184,8 +227,151 @@
       "point_of_interest",
       "establishment"
     ],
-    "user_ratings_total": 9,
-    "vicinity": "Paseo de Santa María de la Cabeza, 32, local 4, Madrid",
+    "user_ratings_total": 3,
+    "vicinity": "Calle de las Delicias, 3, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4039281,
+        "lng": -3.695915300000024
+      },
+      "viewport": {
+        "south": 40.4025749197085,
+        "west": -3.6972114302915315,
+        "north": 40.4052728802915,
+        "east": -3.694513469708454
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "5d5299cebd9761c3d32c2b84467ea214976ce299",
+    "name": "Bar y restaurante Dominguez",
+    "opening_hours": {
+      "open_now": false
+    },
+    "photos": [
+      {
+        "height": 1840,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/116226116552686906349/photos\">SyN Vicious</a>"
+        ],
+        "width": 3264
+      }
+    ],
+    "place_id": "ChIJkVJXNy4mQg0RG0-F4ebh0aU",
+    "plus_code": {
+      "compound_code": "C833+HJ Madrid, Spain",
+      "global_code": "8CGRC833+HJ"
+    },
+    "price_level": 1,
+    "rating": 4.4,
+    "reference": "ChIJkVJXNy4mQg0RG0-F4ebh0aU",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "bar",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 80,
+    "vicinity": "Calle de la Batalla del Salado, 4, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4047015,
+        "lng": -3.6955259999999726
+      },
+      "viewport": {
+        "south": 40.4033572697085,
+        "west": -3.6969751302915483,
+        "north": 40.4060552302915,
+        "east": -3.694277169708471
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
+    "id": "1c0c350b895fd1b6c7dd9accbb58e355a6576a29",
+    "name": "Chin-Chin",
+    "opening_hours": {
+      "open_now": true
+    },
+    "photos": [
+      {
+        "height": 4032,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/102926349086130610856/photos\">Abraham Rivera</a>"
+        ],
+        "width": 3024
+      }
+    ],
+    "place_id": "ChIJmRN2Ti4mQg0RyRWGC51fp-g",
+    "plus_code": {
+      "compound_code": "C833+VQ Madrid, Spain",
+      "global_code": "8CGRC833+VQ"
+    },
+    "price_level": 1,
+    "rating": 4.3,
+    "reference": "ChIJmRN2Ti4mQg0RyRWGC51fp-g",
+    "scope": "GOOGLE",
+    "types": [
+      "bar",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 39,
+    "vicinity": "Calle de la Batalla del Salado, 1, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4043774,
+        "lng": -3.695278700000017
+      },
+      "viewport": {
+        "south": 40.4029519197085,
+        "west": -3.696634730291521,
+        "north": 40.4056498802915,
+        "east": -3.6939367697084435
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "9fd0b6f4e0a8eb802369e92b716b9d2bf23f462c",
+    "name": "Restaurante Arequepay",
+    "opening_hours": {
+      "open_now": false
+    },
+    "photos": [
+      {
+        "height": 667,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/105873887256651939311/photos\">Restaurante Arequepay</a>"
+        ],
+        "width": 1000
+      }
+    ],
+    "place_id": "ChIJG14qtS8mQg0RPvZkoHmW3m4",
+    "plus_code": {
+      "compound_code": "C833+QV Madrid, Spain",
+      "global_code": "8CGRC833+QV"
+    },
+    "price_level": 1,
+    "rating": 4.4,
+    "reference": "ChIJG14qtS8mQg0RPvZkoHmW3m4",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 193,
+    "vicinity": "Calle de las Delicias, 3, Madrid",
     "html_attributions": []
   },
   {
@@ -205,7 +391,7 @@
     "id": "fad407f99fe0708ead3b1c636f51064e7fe652ec",
     "name": "LUIJO'S BAR",
     "opening_hours": {
-      "open_now": true
+      "open_now": false
     },
     "photos": [
       {
@@ -240,102 +426,6 @@
   {
     "geometry": {
       "location": {
-        "lat": 40.4047015,
-        "lng": -3.6955259999999726
-      },
-      "viewport": {
-        "south": 40.4033572697085,
-        "west": -3.6969751302915483,
-        "north": 40.4060552302915,
-        "east": -3.694277169708471
-      }
-    },
-    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/bar-71.png",
-    "id": "1c0c350b895fd1b6c7dd9accbb58e355a6576a29",
-    "name": "Chin-Chin",
-    "opening_hours": {
-      "open_now": false
-    },
-    "photos": [
-      {
-        "height": 4032,
-        "html_attributions": [
-          "<a href=\"https://maps.google.com/maps/contrib/102926349086130610856/photos\">Abraham Rivera</a>"
-        ],
-        "width": 3024
-      }
-    ],
-    "place_id": "ChIJmRN2Ti4mQg0RyRWGC51fp-g",
-    "plus_code": {
-      "compound_code": "C833+VQ Madrid, Spain",
-      "global_code": "8CGRC833+VQ"
-    },
-    "price_level": 1,
-    "rating": 4.3,
-    "reference": "ChIJmRN2Ti4mQg0RyRWGC51fp-g",
-    "scope": "GOOGLE",
-    "types": [
-      "bar",
-      "restaurant",
-      "food",
-      "point_of_interest",
-      "establishment"
-    ],
-    "user_ratings_total": 39,
-    "vicinity": "Calle de la Batalla del Salado, 1, Madrid",
-    "html_attributions": []
-  },
-  {
-    "geometry": {
-      "location": {
-        "lat": 40.4039281,
-        "lng": -3.695915300000024
-      },
-      "viewport": {
-        "south": 40.4025749197085,
-        "west": -3.6972114302915315,
-        "north": 40.4052728802915,
-        "east": -3.694513469708454
-      }
-    },
-    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-    "id": "5d5299cebd9761c3d32c2b84467ea214976ce299",
-    "name": "Bar y restaurante Dominguez",
-    "opening_hours": {
-      "open_now": true
-    },
-    "photos": [
-      {
-        "height": 1840,
-        "html_attributions": [
-          "<a href=\"https://maps.google.com/maps/contrib/116226116552686906349/photos\">SyN Vicious</a>"
-        ],
-        "width": 3264
-      }
-    ],
-    "place_id": "ChIJkVJXNy4mQg0RG0-F4ebh0aU",
-    "plus_code": {
-      "compound_code": "C833+HJ Madrid, Spain",
-      "global_code": "8CGRC833+HJ"
-    },
-    "price_level": 1,
-    "rating": 4.4,
-    "reference": "ChIJkVJXNy4mQg0RG0-F4ebh0aU",
-    "scope": "GOOGLE",
-    "types": [
-      "restaurant",
-      "bar",
-      "food",
-      "point_of_interest",
-      "establishment"
-    ],
-    "user_ratings_total": 79,
-    "vicinity": "Calle de la Batalla del Salado, 4, Madrid",
-    "html_attributions": []
-  },
-  {
-    "geometry": {
-      "location": {
         "lat": 40.4038865,
         "lng": -3.6963570000000345
       },
@@ -363,6 +453,181 @@
       "establishment"
     ],
     "vicinity": "Spain",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4038336,
+        "lng": -3.696280500000057
+      },
+      "viewport": {
+        "south": 40.4025584197085,
+        "west": -3.6977767802915196,
+        "north": 40.40525638029149,
+        "east": -3.695078819708442
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "d2647cadc19fa776ef4fdd95912b052b3f73afe5",
+    "name": "Tropical House",
+    "opening_hours": {
+      "open_now": false
+    },
+    "photos": [
+      {
+        "height": 2049,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/114860061404658743764/photos\">Tropical House</a>"
+        ],
+        "width": 1537
+      }
+    ],
+    "place_id": "ChIJHZ3U7lInQg0R9pl0bNqMxsE",
+    "plus_code": {
+      "compound_code": "C833+GF Madrid, Spain",
+      "global_code": "8CGRC833+GF"
+    },
+    "rating": 5,
+    "reference": "ChIJHZ3U7lInQg0R9pl0bNqMxsE",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 1,
+    "vicinity": "Paseo de Santa María de la Cabeza, 35, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4038336,
+        "lng": -3.696280500000057
+      },
+      "viewport": {
+        "south": 40.4025584197085,
+        "west": -3.6977767802915196,
+        "north": 40.40525638029149,
+        "east": -3.695078819708442
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "81c0d0940512fb3ec326043d84135fe3a21d82ca",
+    "name": "El Cafetalito Bar",
+    "opening_hours": {
+      "open_now": false
+    },
+    "photos": [
+      {
+        "height": 2736,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/103846115780462544756/photos\">Jesús Sanz</a>"
+        ],
+        "width": 3648
+      }
+    ],
+    "place_id": "ChIJ14IVfbQnQg0RU8tc2kt5Zdk",
+    "plus_code": {
+      "compound_code": "C833+GF Madrid, Spain",
+      "global_code": "8CGRC833+GF"
+    },
+    "rating": 3.9,
+    "reference": "ChIJ14IVfbQnQg0RU8tc2kt5Zdk",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 34,
+    "vicinity": "Paseo de Santa María de la Cabeza, 35, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.4038336,
+        "lng": -3.696280500000057
+      },
+      "viewport": {
+        "south": 40.4025584197085,
+        "west": -3.6977767802915196,
+        "north": 40.40525638029149,
+        "east": -3.695078819708442
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "fdda1351d29fff22f6f28c6b44f29e0aee02e32e",
+    "name": "Mamá Teresa Hot Dog & Burger",
+    "opening_hours": {
+      "open_now": false
+    },
+    "place_id": "ChIJ__8PPC4mQg0RjSwHby8-Q6E",
+    "plus_code": {
+      "compound_code": "C833+GF Madrid, Spain",
+      "global_code": "8CGRC833+GF"
+    },
+    "rating": 3.5,
+    "reference": "ChIJ__8PPC4mQg0RjSwHby8-Q6E",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 16,
+    "vicinity": "Paseo de Santa María de la Cabeza, 35, Madrid",
+    "html_attributions": []
+  },
+  {
+    "geometry": {
+      "location": {
+        "lat": 40.403857,
+        "lng": -3.6963874000000487
+      },
+      "viewport": {
+        "south": 40.40255956970849,
+        "west": -3.697839330291572,
+        "north": 40.40525753029149,
+        "east": -3.6951413697084945
+      }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+    "id": "4263354166f47419bcaf0c2cf072681e336813f5",
+    "name": "Mama Teresa Burguer",
+    "opening_hours": {
+      "open_now": false
+    },
+    "photos": [
+      {
+        "height": 2304,
+        "html_attributions": [
+          "<a href=\"https://maps.google.com/maps/contrib/105812279096173145641/photos\">Raquel Teresa</a>"
+        ],
+        "width": 4096
+      }
+    ],
+    "place_id": "ChIJ20bY3f0nQg0RwiEafiD1JNU",
+    "plus_code": {
+      "compound_code": "C833+GC Madrid, Spain",
+      "global_code": "8CGRC833+GC"
+    },
+    "rating": 3.8,
+    "reference": "ChIJ20bY3f0nQg0RwiEafiD1JNU",
+    "scope": "GOOGLE",
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ],
+    "user_ratings_total": 25,
+    "vicinity": "Paseo de Santa María de la Cabeza, 35, Madrid",
     "html_attributions": []
   }
 ]

@@ -23,6 +23,7 @@ class RightBar extends React.Component{
               < ListItem 
                 place={place} 
                 storedDetails={this.props.storedDetails}
+                handleCurrentPlace = {this.props.handleCurrentPlace}
                 handleStoredDetails={this.props.handleStoredDetails}
                 key={place.place_id} 
                 id={place.place_id} 

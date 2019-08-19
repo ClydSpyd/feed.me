@@ -12,10 +12,9 @@ const google = window.google;
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.initMap = this.initMap.bind(this)
+    this.handleLocation = this.handleLocation.bind(this)
     this.handleMap = this.handleMap.bind(this)
     this.handleStoredDetails = this.handleStoredDetails.bind(this)
-    this.handleDetailRequest = this.handleDetailRequest.bind(this)
   }
   state = {
     map:{},
@@ -24,51 +23,209 @@ class App extends React.Component {
     places: [],
     storedDetails:[],
     markers:[],
-    currentPlace: Place,
+    // currentPlace: {
+    //   "formatted_phone_number": "690 95 13 66",
+    //   "name": "Croquetería Ven y verás",
+    //   "opening_hours": {
+    //     "open_now": true,
+    //     "periods": [
+    //       {
+    //         "close": {
+    //           "day": 1,
+    //           "time": "0200",
+    //           "hours": 2,
+    //           "minutes": 0
+    //         },
+    //         "open": {
+    //           "day": 0,
+    //           "time": "0800",
+    //           "hours": 8,
+    //           "minutes": 0
+    //         }
+    //       },
+    //       {
+    //         "close": {
+    //           "day": 3,
+    //           "time": "0200",
+    //           "hours": 2,
+    //           "minutes": 0
+    //         },
+    //         "open": {
+    //           "day": 2,
+    //           "time": "0800",
+    //           "hours": 8,
+    //           "minutes": 0
+    //         }
+    //       },
+    //       {
+    //         "close": {
+    //           "day": 4,
+    //           "time": "0200",
+    //           "hours": 2,
+    //           "minutes": 0
+    //         },
+    //         "open": {
+    //           "day": 3,
+    //           "time": "0800",
+    //           "hours": 8,
+    //           "minutes": 0
+    //         }
+    //       },
+    //       {
+    //         "close": {
+    //           "day": 5,
+    //           "time": "0200",
+    //           "hours": 2,
+    //           "minutes": 0
+    //         },
+    //         "open": {
+    //           "day": 4,
+    //           "time": "0800",
+    //           "hours": 8,
+    //           "minutes": 0
+    //         }
+    //       },
+    //       {
+    //         "close": {
+    //           "day": 6,
+    //           "time": "0200",
+    //           "hours": 2,
+    //           "minutes": 0
+    //         },
+    //         "open": {
+    //           "day": 5,
+    //           "time": "0800",
+    //           "hours": 8,
+    //           "minutes": 0
+    //         }
+    //       },
+    //       {
+    //         "close": {
+    //           "day": 0,
+    //           "time": "0200",
+    //           "hours": 2,
+    //           "minutes": 0
+    //         },
+    //         "open": {
+    //           "day": 6,
+    //           "time": "0800",
+    //           "hours": 8,
+    //           "minutes": 0
+    //         }
+    //       }
+    //     ],
+    //     "weekday_text": [
+    //       "Monday: Closed",
+    //       "Tuesday: 8:00 AM – 2:00 AM",
+    //       "Wednesday: 8:00 AM – 2:00 AM",
+    //       "Thursday: 8:00 AM – 2:00 AM",
+    //       "Friday: 8:00 AM – 2:00 AM",
+    //       "Saturday: 8:00 AM – 2:00 AM",
+    //       "Sunday: 8:00 AM – 2:00 AM"
+    //     ]
+    //   },
+    //   "reviews": [
+    //     {
+    //       "author_name": "Kimball Johnson",
+    //       "author_url": "https://www.google.com/maps/contrib/102980748989435469403/reviews",
+    //       "language": "en",
+    //       "profile_photo_url": "https://lh3.googleusercontent.com/-yeVRyciFO3I/AAAAAAAAAAI/AAAAAAAAIvc/oFH7MAaEXbY/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+    //       "rating": 5,
+    //       "relative_time_description": "a year ago",
+    //       "text": "Left the museum restaurant because it's way too fancy and expensive. The shop was very close and the food was really good. A full meal that filled me up cost less than one course at the Museum restaurant.",
+    //       "time": 1516189509
+    //     },
+    //     {
+    //       "author_name": "Jimmy Isaac Ventura Salcedo",
+    //       "author_url": "https://www.google.com/maps/contrib/104452367844243832407/reviews",
+    //       "language": "en",
+    //       "profile_photo_url": "https://lh6.googleusercontent.com/-ncuk9hieMF4/AAAAAAAAAAI/AAAAAAAAMgw/oD9mIY7teD8/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+    //       "rating": 5,
+    //       "relative_time_description": "a year ago",
+    //       "text": "The Croquetas are amazing. The free tapas are quite good and the service is great",
+    //       "time": 1502867222
+    //     },
+    //     {
+    //       "author_name": "ρόε Μον",
+    //       "author_url": "https://www.google.com/maps/contrib/107596823714298738337/reviews",
+    //       "language": "en",
+    //       "profile_photo_url": "https://lh4.googleusercontent.com/-5CWh2bEMPpQ/AAAAAAAAAAI/AAAAAAAABB0/ljnvAzK5Oj0/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+    //       "rating": 4,
+    //       "relative_time_description": "2 years ago",
+    //       "text": "Always a good option if you're looking for home accessories, decorations, small furniture,table dressing, bed dressing, anything like that they have some really cool storage boxes too, that come in different patterns and sizes, and the nicest kitchen ware around. At sensible prices.",
+    //       "time": 1480344115
+    //     },
+    //     {
+    //       "author_name": "Ivan Sarabia",
+    //       "author_url": "https://www.google.com/maps/contrib/107890769183997740329/reviews",
+    //       "language": "en",
+    //       "profile_photo_url": "https://lh4.googleusercontent.com/-htiEFcGT3-o/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rev7vksf9yKrmZpTKvgwpe__guiWQ/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+    //       "rating": 4,
+    //       "relative_time_description": "2 years ago",
+    //       "text": "Tasty croquetas that were made in house with interesting combinations. Good price, good beer ",
+    //       "time": 1484741346
+    //     },
+    //     {
+    //       "author_name": "Sofia Singh",
+    //       "author_url": "https://www.google.com/maps/contrib/107445602549838842020/reviews",
+    //       "language": "en",
+    //       "profile_photo_url": "https://lh6.googleusercontent.com/-xG8xdEk4xMo/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3reLiwklG2nKC8qki6XrNMlYsYvncw/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+    //       "rating": 1,
+    //       "relative_time_description": "2 years ago",
+    //       "text": "The guy serving was in a hurry all the time but the service was slow as hell, even though there was only one other table occupied at the time. He came, asked for our drinks and my dad couldn't understand so he turned around and left to go smoke and for the next 20 minutes he kept doing that and being rude as hell! After we all order we waited for what seemed like hours while he came and went to smoke and as the plates came (all at different times) it was ok sandwiches, nothing spectacular but after all the waiting he comes and asks me what I had order, even though he had the electronic order app, which he was really slow with (writing the order down would have been much faster)!! So basically I waited hours for rude service and an ok toast...",
+    //       "time": 1481910815
+    //     }
+    //   ],
+    //   "website": "http://www.venyveras.es/",
+    //   "html_attributions": []
+    // },
     currentCenter:{},
+    mapCenter:{},
     loaded:false,
   }
+
+  // handleLocation = (location) => {
+  //   this.setState({pos:location})
+  //   console.log('location')
+  // }
+
   handleMap(map){
     this.setState({
       map
     })
-    // console.log(map)
   }
 
   handleStoredDetails = (newArray) => {
-
     this.setState({storedDetails:newArray})
     localStorage.setItem('initialStoredDetails',JSON.stringify(newArray))
     console.log('new details stored')
   } 
-  
+
   handleRecentre = (coords) => {
     this.setState({
       currentCenter: coords
     })
   }
-
   handlePlaces = (places) => {
     this.setState({
       places: places
     })
   }
-
-  // handleDetails = (details) => {
-  //   console.log(details)
-  //   // this.setState({
-  //   //   currentCenter: details
-  //   // })
-  // }
-
-  handleDetailRequest = (id, map) => {
-    console.log('handleDetailsRequest, ID: ' + id)
-    // console.log(id)
-    // console.log(map)
-    // this.getDeetz(id,this.state.map)
-    // console.log(details)
-
-    // this.setState({currentPlace: requestPlace})
+  handleCenter = (object) => {
+    this.setState({mapCenter:object})
+  }
+  handleCurrentPlace = (place) => {
+    this.setState({
+      currentPlace:place
+    })
+  }
+  handleLocation = (location) => {
+    this.setState({
+      pos: location
+    })
+    var mainTop = document.querySelector('.innerWrapper').offsetTop;
+    window.scrollTo({top: mainTop, behavior: 'smooth'})
+    console.log(location)
   }
   handleMarkers = (markers) => {
     this.setState({
@@ -76,42 +233,18 @@ class App extends React.Component {
     })
   }
 
-
-  
-
-  setInitial = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.initMap);
-    } else {
-      console.log("Geolocation is not supported by this browser.");
-    }
-    }
-
-  initMap = (position) => {
-    console.log(position.coords.latitude)
-    console.log(position.coords.longitude)
-    this.setState ({
-      pos: {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    }
-    })
-  }
   secondStep = () => {
-    console.log('state location: lat:' + this.state.pos.lat + 'lng: ' + this.state.pos.lng);
+    console.log('state location: lat:' + this.state.userLoc.lat + 'lng: ' + this.state.userLoc.lng);
     this.setState({
       loaded: true
     })
-    var mainTop = document.querySelector('.innerWrapper').offsetTop;
-    window.scrollTo({top: mainTop, behavior: 'smooth'})
-    // document.getElementsByName('innerWrapper').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
   }
 
   doTheThing = (callback) => {
     navigator.geolocation.getCurrentPosition(pos => {
     console.log(pos.coords)
     this.setState({
-      pos: {
+      userLoc: {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
       }
@@ -121,7 +254,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const initialStoredDetailas = JSON.parse(localStorage.getItem('initialStoredDetails')) ? JSON.parse(localStorage.getItem('initialStoredDetails')) : 
-    [{id:1,details:{thing:'nothing to see here'}}];
+    [];
     this.setState({storedDetails:initialStoredDetailas})
     this.doTheThing(this.secondStep)
   }
@@ -130,10 +263,15 @@ class App extends React.Component {
 
       return(
      <div className='appWrapper'>
-       < LandingPage> ></LandingPage>
+       < LandingPage 
+        map = {this.props.map}
+        handleLocation={this.handleLocation}
+        handleCenter={this.handleCenter}
+        userLoc = {this.state.userLoc} /> 
        <div className='innerWrapper'>
          
-        <TopBar ></TopBar>
+        <TopBar 
+        />
         <MapWrapper 
         handleDetailRequest={this.handleDetailRequest}
         places={this.state.places}
@@ -142,19 +280,23 @@ class App extends React.Component {
         handleDrag={this.handleDrag} 
         handlePlaces={this.handlePlaces}
         handleMarkers={this.handleMarkers}
+        handleLocation={this.handleLocation}
         handleMap={this.handleMap}
         markers={this.state.markers}
+        mapCenter={this.state.mapCenter}
         map={this.state.map}
+        handleCurrentPlace={this.handleCurrentPlace}
         currentPlace={this.currentPlace}
         storedDetails={this.state.storedDetails}
         handleStoredDetails={this.handleStoredDetails}
         // currentCenter={this.state.currentCenter}
-        // getIDs={this.getIDs} 
         >
          
         </MapWrapper>
        </div>
-      <BottomSection></BottomSection>
+      <div className="bottomWrapper">
+        <BottomSection currentPlace={this.state.currentPlace}></BottomSection>
+      </div>
       {/* <ReviewsWrapper></ReviewsWrapper> */}
       
      </div> 

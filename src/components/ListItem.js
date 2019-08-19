@@ -82,8 +82,7 @@ class ListItem extends React.Component {
   getDeetz = (id,map) => {
     var that = this
     var request = {
-      placeId: id,
-      fields: ['name','formatted_phone_number', 'review', 'opening_hours', 'website']
+      placeId: id
     }
     var service = new google.maps.places.PlacesService(map)
     console.log('from API')
@@ -92,6 +91,7 @@ class ListItem extends React.Component {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       that.setState({details:place})
       that.addItem(id, place)
+      console.log(place.photos)
     } else {
       console.log(status)}
     }
@@ -105,6 +105,7 @@ class ListItem extends React.Component {
     var thisOne = document.getElementById(myId)
     thisOne.classList.toggle('itemExpanded')
     thisOne.classList.toggle('itemWrapper')
+    const that = this
     this.checkForDeetz(passId,this.props.map)
     // console.log('passID: '+ passId)
     if (this.state.isExpanded){
@@ -121,6 +122,12 @@ class ListItem extends React.Component {
     },200)
 
     }
+    setTimeout(function(){
+      var topPos = thisOne.offsetTop;
+      document.getElementById('RightBar').scrollTo({top: topPos-9, behavior: 'smooth'})
+      // document.getElementById(marker.itemID).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+    },250)
+    setTimeout(()=>{that.props.handleCurrentPlace(that.state.details)},500)
   }
 
   stopBounce = (marker) => {
@@ -218,10 +225,11 @@ class ListItem extends React.Component {
             {this.state.details.reviews ? 
             <div>
             <p className='itemUsername'><a href={this.state.details.reviews[0].author_url}>{this.state.details.reviews[0].author_name}</a> said:</p>
-            <p className='reviewText'>"{this.state.details.reviews[0]<=50 ? this.state.details.reviews[0]: this.state.details.reviews[0].text.substring(0,50)+'...'}"</p>
+            <p className='reviewText'>"{this.state.details.reviews[0].text.length <200 ? this.state.details.reviews[0].text : this.state.details.reviews[0].text.substring(0,200)+'...'}"</p>
               <a href='#' className="itemSite">more user reviews</a>
             </div>
             : null}
+
                 {this.state.details.opening_hours ? 
                 <div className="openingTimes">
                   <strong>Opening Hours</strong>
@@ -237,6 +245,12 @@ class ListItem extends React.Component {
                 <div className="siteDiv">
                   <a target='_blank' href={this.state.details.website}className='itemSite'>visit website</a>
                 </div>
+
+
+                {this.props.place.photos[0].getUrl ? 
+                <div className="itemPhotos">
+                  <img className='itemListPhoto' src={this.props.place.photos[0].getUrl()} alt="" srcset=""/>
+                </div> : null}
           </div>
         </div>
       )}

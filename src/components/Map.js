@@ -21,6 +21,7 @@ export class MapComp extends React.Component {
     this.dropPinsNotBombs=this.dropPinsNotBombs.bind(this)
     this.getPlaces=this.getPlaces.bind(this)
     this.initiateMap=this.initiateMap.bind(this)
+    this.recenter=this.recenter.bind(this)
   }
   state = {
     currentCenter: {}
@@ -83,6 +84,7 @@ export class MapComp extends React.Component {
           item.click()
         })
         document.getElementById(marker.itemID).click()
+        // console.log(marker)
         setTimeout(function(){
           var topPos = document.getElementById(marker.itemID).offsetTop;
           document.getElementById('RightBar').scrollTo({top: topPos-9, behavior: 'smooth'})
@@ -91,7 +93,7 @@ export class MapComp extends React.Component {
       })
     },900)
   }
-
+  log
   //=====CLEAR MARKERS FROM MAP =====//
   clearMarkers = () => {
     for (let i = 0; i < markers.length; i++) {
@@ -145,6 +147,10 @@ export class MapComp extends React.Component {
     })
   }
 
+recenter = (mapProps, map) => {
+  setTimeout(this.searchAgain.bind(null, mapProps, map), 700);
+}
+
 
   //====SET CUSTOM MAP STYLES====//
 
@@ -156,6 +162,7 @@ export class MapComp extends React.Component {
 
   //=====GET MORE RESTAURANTS/SET CENTER AFTER SCROLL====//
   searchAgain = (mapProps, map) => {
+    console.log('again')
   this.getCenter(mapProps,map)
   this.getPlaces(map)/////<<------COMMENTED OUT TO STOP UNNECESSARY QUERIES DURING DEV
   setTimeout(this.dropPinsNotBombs.bind(null, map), 850);
@@ -171,11 +178,12 @@ export class MapComp extends React.Component {
     this.props.handleMap(map)
     this.setState({currentCenter})
     // setTimeout(this.getPlaces.bind(null, map), 500);/////<<------COMMENTED OUT TO STOP QUERIES DURING DEV
-
-    this.loadSamples(samples)
-    setTimeout(this.dropPinsNotBombs.bind(null, map), 800);
+    // this.searchAgain(mapProps, map)
+    // this.loadSamples(samples)
+    // setTimeout(this.dropPinsNotBombs.bind(null, map), 900);
+    setTimeout(this.searchAgain.bind(null, mapProps, map), 700);
+    // this.searchAgain(mapProps, map)
   }
-
 
 
     // MAKE DETAIL REQUEST FOR SPECIFIC MARKER ===== //
@@ -183,14 +191,22 @@ export class MapComp extends React.Component {
       console.log(thing)
     }
 
+    // componentDidUpdate(map){
+    //   console.log(map)
+    //   // map.setCenter({lat: 51.4545, lng:2})
+    //   map.setCenter(new google.maps.LatLng(51.4545, 2))
+    // }
+
   render() {
   return (
     <Map
       places={this.props.places}
-      initialCenter={{lat: this.props.pos.lat, lng:this.props.pos.lng+0.00035}} 
+      initialCenter={{lat: this.props.mapCenter.lat, lng: this.props.mapCenter.lng+0.00075}}
+      // initialCenter={{lat: this.props.pos.lat, lng:this.props.pos.lng+0.00035}} 
       // initialCenter={{lat: 51.4545, lng:2}} 
+      center = {{lat: this.props.mapCenter.lat, lng: this.props.mapCenter.lng+0.00075}}
       google={this.props.google} 
-      zoom={19} 
+      zoom={17} 
       style={style} 
       streetViewControl = {false}
       zoomControl= {false}

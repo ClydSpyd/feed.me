@@ -15,7 +15,7 @@ class MapWrapper extends React.Component {
   
   render() {
 
-    if(this.props.pos){
+    if(this.props.pos && this.props.mapCenter){
       return(
         <React.Fragment>
 
@@ -26,20 +26,25 @@ class MapWrapper extends React.Component {
             storedDetails={this.props.storedDetails}
             handleStoredDetails={this.props.handleStoredDetails}
             markers={this.props.markers} 
-            handleDetailRequest={this.props.handleDetailRequest} 
+            handleDetailRequest={this.props.handleDetailRequest}
+            handleCurrentPlace={this.props.handleCurrentPlace} 
             map={this.props.map} 
             currentPlace={this.props.currentPlace}>
           </RightBar>
         </div>
         <MapComp 
         className='Map'
+        mapCenter={this.props.mapCenter}
         handleDetailRequest={this.props.handleDetailRequest}
+        handleCurrentPlace={this.props.handleCurrentPlace}
         handlePlaces = {this.props.handlePlaces} 
+        handleStoredDetails={this.props.handleStoredDetails}
         handleRecentre={this.props.handleRecentre} 
         handleMarkers={this.props.handleMarkers}
         handleMap={this.props.handleMap}
         pos={this.props.pos} 
-        places={this.props.places} 
+        places={this.props.places}  
+        storedDetails={this.props.storedDetails}
         />
 
        
