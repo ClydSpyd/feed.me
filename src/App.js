@@ -203,7 +203,12 @@ class App extends React.Component {
 
   handleRecentre = (coords) => {
     this.setState({
-      currentCenter: coords
+      currentCenter: coords,
+    })
+  }
+  handleMapCentre = (coords) => {
+    this.setState({
+      mapCenter: coords
     })
   }
   handlePlaces = (places) => {
@@ -277,6 +282,7 @@ class App extends React.Component {
         places={this.state.places}
         pos={this.state.pos} 
         handleRecentre={this.handleRecentre}
+        handleMapCentre={this.handleMapCentre}
         handleDrag={this.handleDrag} 
         handlePlaces={this.handlePlaces}
         handleMarkers={this.handleMarkers}
@@ -294,8 +300,9 @@ class App extends React.Component {
          
         </MapWrapper>
        </div>
-      <div className="bottomWrapper">
-        <BottomSection currentPlace={this.state.currentPlace}></BottomSection>
+      <div className="bottomWrapper" id="bottomWrapper">
+        <BottomSection 
+        currentPlace={this.state.currentPlace}></BottomSection>
       </div>
       {/* <ReviewsWrapper></ReviewsWrapper> */}
       

@@ -127,11 +127,16 @@ class ListItem extends React.Component {
       document.getElementById('RightBar').scrollTo({top: topPos-9, behavior: 'smooth'})
       // document.getElementById(marker.itemID).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
     },250)
-    setTimeout(()=>{that.props.handleCurrentPlace(that.state.details)},500)
+    setTimeout(()=>{that.props.handleCurrentPlace(that.state.details)},1000)
   }
 
   stopBounce = (marker) => {
     marker.setAnimation(null)
+  }
+
+  goReviews = () => {
+    console.log(document.getElementById('bottomWrapper'))
+    // .scrollIntoView(true)
   }
 
   enter = () => {
@@ -214,11 +219,10 @@ class ListItem extends React.Component {
               <h5 className='itemName'>{this.props.place.name}</h5>
               <p className='itemLoc'>{this.props.place.vicinity}</p>
               <p className='itemLoc'>{this.state.details.formatted_phone_number}</p>
-              {/* <p className='itemOpen'>{place.opening_hours.open_now ? 'open now!' : 'closed'}</p> */}
-              {/* {this.props.place.opening_hours ? <p className='itemOpen'>{this.props.place.opening_hours.open_now?'open now!' : 'closed'}</p> : null} */}
             </div>
             <img className='itemImageSm'src={pic} alt="" srcSet=""/>
           </div >
+          
           <div className='hidden mid' id={this.props.place.id+'B'}>
             <p className='openHoursList'>average user rating:</p>
             <img className='starsIcon' src={stars[this.state.numStars]} alt="" srcSet=""/>
@@ -226,11 +230,12 @@ class ListItem extends React.Component {
             <div>
             <p className='itemUsername'><a href={this.state.details.reviews[0].author_url}>{this.state.details.reviews[0].author_name}</a> said:</p>
             <p className='reviewText'>"{this.state.details.reviews[0].text.length <200 ? this.state.details.reviews[0].text : this.state.details.reviews[0].text.substring(0,200)+'...'}"</p>
-              <a href='#' className="itemSite">more user reviews</a>
+              <a href='#' className="itemSite"
+              onClick={this.goReviews}>more user reviews</a>
             </div>
             : null}
 
-                {this.state.details.opening_hours ? 
+          {this.state.details.opening_hours ? 
                 <div className="openingTimes">
                   <strong>Opening Hours</strong>
                   <p className='openHoursList'>{this.state.details.opening_hours.weekday_text[d]}</p> 
@@ -241,16 +246,16 @@ class ListItem extends React.Component {
                   <p className='openHoursList'>{this.state.details.opening_hours.weekday_text[5]}</p>
                   <p className='openHoursList'>{this.state.details.opening_hours.weekday_text[6]}</p>  */}
                 </div>
-                : null}
-                <div className="siteDiv">
+                : <div><strong>Opening Hours</strong><p className='openHoursList'>no information provided</p></div>}
+                {/* <div className="siteDiv">
                   <a target='_blank' href={this.state.details.website}className='itemSite'>visit website</a>
-                </div>
+                </div> */}
 
 
-                {this.props.place.photos[0].getUrl ? 
+                {this.props.place.photos ? 
                 <div className="itemPhotos">
                   <img className='itemListPhoto' src={this.props.place.photos[0].getUrl()} alt="" srcset=""/>
-                </div> : null}
+                </div> : <div className='itemPhotos'><p className='openHoursList'>no photos available</p></div>}
           </div>
         </div>
       )}

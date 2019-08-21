@@ -89,7 +89,7 @@ export class MapComp extends React.Component {
           var topPos = document.getElementById(marker.itemID).offsetTop;
           document.getElementById('RightBar').scrollTo({top: topPos-9, behavior: 'smooth'})
           // document.getElementById(marker.itemID).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
-        },250)})
+        },750)})
       })
     },900)
   }
@@ -110,9 +110,29 @@ export class MapComp extends React.Component {
     restaurants=[]
     this.props.handlePlaces(restaurants)
     const places = new window.google.maps.places.PlacesService(map);
-    var mapBounds = map.getBounds();
-    // var request = { location: {lat: this.state.currentCenter.lat,lng: this.state.currentCenter.lng-0.0002}, radius:50, type: ['restaurant']};
-    var request = { bounds: mapBounds, type: ['restaurant']};
+    // var mapBounds = map.getBounds();
+    var request = { location: {lat: this.state.currentCenter.lat,lng: this.state.currentCenter.lng-0.0002}, radius:250, type: ['restaurant']};
+    // var request = { bounds: mapBounds, type: ['restaurant']};
+    places.nearbySearch(request, callback);
+
+    function callback(results, status) {
+    for (var i = 0; i < results.length; i++) 
+      {restaurants.push(results[i])}
+    }
+    setTimeout(this.props.handlePlaces.bind(null, restaurants), 500);
+
+    setTimeout(this.props.handleMarkers.bind(null, markers), 450);
+    setTimeout(function(){restaurants=[]}, 700);
+  }
+
+   refocusSearch = (map, mapProps) => {
+    this.clearMarkers()
+    restaurants=[]
+    this.props.handlePlaces(restaurants)
+    const places = new window.google.maps.places.PlacesService(map);
+    // var mapBounds = map.getBounds();
+    var request = { location: {lat: this.props.mapCenter.lat,lng: this.props.mapCenter.lng-0.0002}, radius:250, type: ['restaurant']};
+    // var request = { bounds: mapBounds, type: ['restaurant']};
     places.nearbySearch(request, callback);
 
     function callback(results, status) {
@@ -176,13 +196,10 @@ recenter = (mapProps, map) => {
     this.getCenter(mapProps,map)
     this.setStyles(map)
     this.props.handleMap(map)
+    this.setState({map:map, mapProps:mapProps})
     this.setState({currentCenter})
-    // setTimeout(this.getPlaces.bind(null, map), 500);/////<<------COMMENTED OUT TO STOP QUERIES DURING DEV
-    // this.searchAgain(mapProps, map)
-    // this.loadSamples(samples)
-    // setTimeout(this.dropPinsNotBombs.bind(null, map), 900);
-    setTimeout(this.searchAgain.bind(null, mapProps, map), 700);
-    // this.searchAgain(mapProps, map)
+    // setTimeout(this.getPlaces.bind(null, map), 500);/////<<------COMMENTED OUT TO STOP QUERIES DURING DE
+    setTimeout(this.searchAgain.bind(null, mapProps, map), 900);
   }
 
 
@@ -191,11 +208,15 @@ recenter = (mapProps, map) => {
       console.log(thing)
     }
 
-    // componentDidUpdate(map){
-    //   console.log(map)
-    //   // map.setCenter({lat: 51.4545, lng:2})
-    //   map.setCenter(new google.maps.LatLng(51.4545, 2))
-    // }
+    componentDidUpdate = (nextProps, mapProps) => {
+      if (nextProps.mapCenter !== this.props.mapCenter) {
+        // console.log('switcheroo')
+        setTimeout(this.searchAgain.bind(null, mapProps, this.state.map), 800);
+        // console.log(this.state.map)
+        this.state.map.setCenter(this.props.mapCenter)
+        this.state.map.setZoom(16)
+      }
+    }
 
   render() {
   return (
@@ -204,7 +225,8 @@ recenter = (mapProps, map) => {
       initialCenter={{lat: this.props.mapCenter.lat, lng: this.props.mapCenter.lng+0.00075}}
       // initialCenter={{lat: this.props.pos.lat, lng:this.props.pos.lng+0.00035}} 
       // initialCenter={{lat: 51.4545, lng:2}} 
-      center = {{lat: this.props.mapCenter.lat, lng: this.props.mapCenter.lng+0.00075}}
+      // center = {{lat: this.props.mapCenter.lat, lng: this.props.mapCenter.lng+0.00075}}
+      onCenterChanged={()=>{console.log('hai, changed')}}
       google={this.props.google} 
       zoom={17} 
       style={style} 

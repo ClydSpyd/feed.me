@@ -15,14 +15,16 @@ class LandingPage extends React.Component{
     this.props.handleLocation(this.props.userLoc)
     this.props.handleCenter(this.props.userLoc)
   }
+
   submitSearchLocation = (object) => {
     this.props.handleLocation(this.props.userLoc)
     this.setState({searchLocation:object})
-    // console.log(object)
-    // this.props.map.setCenter()
     this.props.handleCenter({lat:object.geometry.location.lat(),lng:object.geometry.location.lng()})
     console.log('lat: '+ object.geometry.location.lat())
     console.log('lng: '+ object.geometry.location.lng())
+  }
+  submitSearchLocationButton = () => {
+    this.props.handleLocation(this.props.userLoc)
   }
 
   componentDidMount(){
@@ -31,7 +33,6 @@ class LandingPage extends React.Component{
     var input = document.getElementById('searchTextInput')
     var autocomplete = new google.maps.places.Autocomplete(input)
     autocomplete.addListener('place_changed', () => {
-      
       this.submitSearchLocation(autocomplete.getPlace())
     })
   }
@@ -41,7 +42,7 @@ class LandingPage extends React.Component{
              <img className="landingLogo" alt='' src={loadLogo} />
              <form action="">
                <input type="text" name="searchTextInput" id="searchTextInput" placeholder='enter location'/>
-               <label className='searchLabel' htmlFor="searchTextInput" onClick={this.submitSearchLocation}>search</label>
+               <label className='searchLabel' htmlFor="searchTextInput" onClick={this.submitSearchLocationButton}>search</label>
              </form>
              <button id='nearMeButton'type="button" onClick={this.submitLocation}>search near me</button>
        </div>

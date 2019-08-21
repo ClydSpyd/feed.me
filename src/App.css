@@ -288,6 +288,7 @@ hr{
   height:300px;;
 }
 .itemListPhoto{
+  object-fit: contain;
   margin:0 auto;
   font-size: .9rem;
   color: #980ac4;

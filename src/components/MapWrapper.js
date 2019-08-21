@@ -40,6 +40,7 @@ class MapWrapper extends React.Component {
         handlePlaces = {this.props.handlePlaces} 
         handleStoredDetails={this.props.handleStoredDetails}
         handleRecentre={this.props.handleRecentre} 
+        handleMapCentre={this.props.handleMapCentre} 
         handleMarkers={this.props.handleMarkers}
         handleMap={this.props.handleMap}
         pos={this.props.pos} 
