@@ -17,7 +17,9 @@ class LandingPage extends React.Component{
   }
 
   submitSearchLocation = (object) => {
+    // setTimeout(this.props.handleLocation.bind(null, this.props.userLoc), 650)
     this.props.handleLocation(this.props.userLoc)
+    this.props.handleCurrentPlace({})
     this.setState({searchLocation:object})
     this.props.handleCenter({lat:object.geometry.location.lat(),lng:object.geometry.location.lng()})
     console.log('lat: '+ object.geometry.location.lat())
@@ -41,7 +43,7 @@ class LandingPage extends React.Component{
       <div className="landingPage">
              <img className="landingLogo" alt='' src={loadLogo} />
              <form action="">
-               <input type="text" name="searchTextInput" id="searchTextInput" placeholder='enter location'/>
+               <input type="text" name="searchTextInput" id="searchTextInput" placeholder='enter city / town / neighbourhood'/>
                <label className='searchLabel' htmlFor="searchTextInput" onClick={this.submitSearchLocationButton}>search</label>
              </form>
              <button id='nearMeButton'type="button" onClick={this.submitLocation}>search near me</button>

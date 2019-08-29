@@ -15,6 +15,7 @@ class App extends React.Component {
     this.handleLocation = this.handleLocation.bind(this)
     this.handleMap = this.handleMap.bind(this)
     this.handleStoredDetails = this.handleStoredDetails.bind(this)
+    this.handleNewReview = this.handleNewReview.bind(this)
   }
   state = {
     map:{},
@@ -195,6 +196,23 @@ class App extends React.Component {
     })
   }
 
+  handleNewReview = (inQuestion, review) =>{
+    var stored = this.state.storedDetails
+    stored.forEach(placeInStorage =>{
+      if (placeInStorage.details.name !== inQuestion){
+        console.log(placeInStorage.details.name)
+      }else {
+        placeInStorage.details.reviews.push(review)
+        // console.log(stored)
+        // this.setState({storedDetails:stored})
+        this.handleStoredDetails(stored)
+      }
+    })
+    // console.log(inQuestion)
+    // console.log(review)
+    // console.log(stored)
+  }
+
   handleStoredDetails = (newArray) => {
     this.setState({storedDetails:newArray})
     localStorage.setItem('initialStoredDetails',JSON.stringify(newArray))
@@ -228,9 +246,13 @@ class App extends React.Component {
     this.setState({
       pos: location
     })
-    var mainTop = document.querySelector('.innerWrapper').offsetTop;
-    window.scrollTo({top: mainTop, behavior: 'smooth'})
-    console.log(location)
+    
+
+    setTimeout(()=>{
+      var mainTop = document.querySelector('.innerWrapper').offsetTop;
+      window.scrollTo({top: mainTop, behavior: 'smooth'})
+    }, 650)
+    // console.log(location)
   }
   handleMarkers = (markers) => {
     this.setState({
@@ -239,7 +261,7 @@ class App extends React.Component {
   }
 
   secondStep = () => {
-    console.log('state location: lat:' + this.state.userLoc.lat + 'lng: ' + this.state.userLoc.lng);
+    // console.log('state location: lat:' + this.state.userLoc.lat + 'lng: ' + this.state.userLoc.lng);
     this.setState({
       loaded: true
     })
@@ -247,12 +269,12 @@ class App extends React.Component {
 
   doTheThing = (callback) => {
     navigator.geolocation.getCurrentPosition(pos => {
-    console.log(pos.coords)
+    // console.log(pos.coords)
     this.setState({
       userLoc: {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
-      }
+      },
     })
     callback()
   })}
@@ -270,6 +292,7 @@ class App extends React.Component {
      <div className='appWrapper'>
        < LandingPage 
         map = {this.props.map}
+        handleCurrentPlace={this.handleCurrentPlace}
         handleLocation={this.handleLocation}
         handleCenter={this.handleCenter}
         userLoc = {this.state.userLoc} /> 
@@ -302,7 +325,10 @@ class App extends React.Component {
        </div>
       <div className="bottomWrapper" id="bottomWrapper">
         <BottomSection 
-        currentPlace={this.state.currentPlace}></BottomSection>
+        handleNewReview={this.handleNewReview}
+        storedDetails={this.state.storedDetails}
+        currentPlace={this.state.currentPlace}
+        ></BottomSection>
       </div>
       {/* <ReviewsWrapper></ReviewsWrapper> */}
       

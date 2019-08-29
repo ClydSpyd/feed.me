@@ -1,5 +1,6 @@
 import React from 'react'
 import Review from './Review'
+import NewReviewForm from './newReviewForm'
 
 var reviews = []
 const deetz = {author_name: 'dave', text: 'blah blah blah'}
@@ -8,8 +9,12 @@ class BottomSection extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      reviews:[]
+      reviews:[],
+      formVis: false,
     }
+  }
+  handleRevFormVis = (x) => {
+    this.setState({formVis:x})
   }
   // componentWillUpdate(){
   //   const that = this
@@ -28,20 +33,21 @@ class BottomSection extends React.Component{
     return (
     <div className="gridWrap">
       <div className='reviewGrid'>
+        {this.state.formVis ? <NewReviewForm handleNewReview={this.props.handleNewReview} restaurant={this.props.currentPlace} handleRevFormVis={this.handleRevFormVis} /> : null}
       {this.props.currentPlace.reviews.map(review=>{
         return (< Review details={review} />)
       })}
-      <div className="addReviewBlock">
+    { this.props.currentPlace.reviews.length < 6 ? <div className="addReviewBlock">
         <div className="blockInner">
-          <div className='addIcon'>+</div>
+          <div onClick={()=>{setTimeout(()=>{this.setState({formVis:true})},150)}}className='addIcon'>+</div>
           <div className='addReview'>add review</div>
         </div>
-      </div>
-      </div>
+      </div>: null}
+      </div> 
     </div>
     )}else{
       return(
-        <div></div>
+        <div className='reviewEmptyDiv'> no reviews to display</div>
       )
     }
   }

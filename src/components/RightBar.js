@@ -34,6 +34,24 @@ class RightBar extends React.Component{
               />
             )})
           }
+          {this.props.localPlaces.map(place => {
+            // console.log(place)
+            return(
+              < ListItem 
+                local={true}
+                place={place} 
+                storedDetails={this.props.storedDetails}
+                handleCurrentPlace = {this.props.handleCurrentPlace}
+                handleStoredDetails={this.props.handleStoredDetails}
+                key={place.id} 
+                id={place.id} 
+                markers={this.props.markers} 
+                handleDetailRequest={this.props.handleDetailRequest} 
+                // map={this.props.map}
+                currentPlace={this.props.currentPlace}
+              />
+            )})
+          }
         </div>
         {/* {listItems} */}
       </div>
