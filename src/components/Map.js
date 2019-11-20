@@ -120,7 +120,7 @@ export class MapComp extends React.Component {
     this.props.handlePlaces(restaurants)
     const places = new window.google.maps.places.PlacesService(map);
     // var mapBounds = map.getBounds();
-    var request = { location: {lat: this.state.currentCenter.lat,lng: this.state.currentCenter.lng-0.0002}, radius:250, type: ['restaurant']};
+    var request = { location: {lat: this.state.currentCenter.lat,lng: this.state.currentCenter.lng-0.0013}, radius:250, type: ['restaurant']};
     // var request = { bounds: mapBounds, type: ['restaurant']};
     places.nearbySearch(request, callback);
 
