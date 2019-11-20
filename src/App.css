@@ -97,11 +97,12 @@ hr{
 }
 #searchTextInput {
   margin: 30px 5px;
-  padding: 20px 10px;
+  padding: 20px 20px;
   width: 40vw;
   height: 20px;
   font-family: helvetica;
   font-size: 1.5rem;
+  /* text-align:center; */
 }
 .hidden{
   display: none;
@@ -756,7 +757,10 @@ hr{
   }
 } */
 
-@media (max-width:900px){
+@media (max-width:1000px){
+  #searchTextInput {
+    text-align:center;
+  }
   .searchLabel{
     text-align: center;
     display: block;
@@ -770,5 +774,21 @@ hr{
     padding:10px 10px;
     height:60px;
     width:280px;
+  }
+  .reviewWrapper{
+    width: 350px;
+    margin:20px auto;
+  }
+  .addReviewBlock{
+    width: 350px;
+    margin:20px auto;
+  }
+  .bottomWrapper{
+    height:1400px;
+  }
+}
+@media (max-width:780px){
+  .bottomWrapper{
+    height:2500px;
   }
 }

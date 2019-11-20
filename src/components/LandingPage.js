@@ -43,7 +43,7 @@ class LandingPage extends React.Component{
       <div className="landingPage">
              <img className="landingLogo" alt='' src={loadLogo} />
              <form action="">
-               <input type="text" name="searchTextInput" id="searchTextInput" placeholder='enter city / town / neighbourhood'/>
+               <input type="text" name="searchTextInput" id="searchTextInput" placeholder='Enter location'/>
                <label className='searchLabel' htmlFor="searchTextInput" onClick={this.submitSearchLocationButton}>search</label>
              </form>
              <button id='nearMeButton'type="button" onClick={this.submitLocation}>search near me</button>
