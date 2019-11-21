@@ -16,6 +16,7 @@ class App extends React.Component {
     this.handleMap = this.handleMap.bind(this)
     this.handleStoredDetails = this.handleStoredDetails.bind(this)
     this.handleNewReview = this.handleNewReview.bind(this)
+    this.showBottomSection = this.showBottomSection.bind(this)
   }
   state = {
     map:{},
@@ -183,6 +184,8 @@ class App extends React.Component {
     currentCenter:{},
     mapCenter:{},
     loaded:false,
+    mapVis: false,
+    bottomVis:false,
   }
 
   // handleLocation = (location) => {
@@ -195,6 +198,8 @@ class App extends React.Component {
       map
     })
   }
+
+  
 
   handleNewReview = (inQuestion, review) =>{
     var stored = this.state.storedDetails
@@ -212,6 +217,13 @@ class App extends React.Component {
     // console.log(review)
     // console.log(stored)
   }
+
+  showBottomSection = () => {
+    this.setState({
+      bottomVis: true
+    })
+  }
+
 
   handleStoredDetails = (newArray) => {
     this.setState({storedDetails:newArray})
@@ -244,15 +256,17 @@ class App extends React.Component {
   }
   handleLocation = (location) => {
     this.setState({
-      pos: location
+      pos: location,
+      mapVis: true,
     })
-    
+
+  
 
     setTimeout(()=>{
       var mainTop = document.querySelector('.innerWrapper').offsetTop;
       window.scrollTo({top: mainTop, behavior: 'smooth'})
-    }, 650)
-    // console.log(location)
+    }, 1050)
+    console.log(location)
   }
   handleMarkers = (markers) => {
     this.setState({
@@ -296,10 +310,9 @@ class App extends React.Component {
         handleLocation={this.handleLocation}
         handleCenter={this.handleCenter}
         userLoc = {this.state.userLoc} /> 
-       <div className='innerWrapper'>
-         
-        
-        <MapWrapper 
+
+       {this.state.mapVis ?  <div className='innerWrapper'>
+       <MapWrapper 
         handleDetailRequest={this.handleDetailRequest}
         places={this.state.places}
         pos={this.state.pos} 
@@ -318,17 +331,18 @@ class App extends React.Component {
         storedDetails={this.state.storedDetails}
         handleStoredDetails={this.handleStoredDetails}
         // currentCenter={this.state.currentCenter}
+        showBottomSection={this.showBottomSection}
         >
          
         </MapWrapper>
-       </div>
-      <div className="bottomWrapper" id="bottomWrapper">
+       </div> : null}
+      {this.state.bottomVis ? <div className="bottomWrapper" id="bottomWrapper">
         <BottomSection 
         handleNewReview={this.handleNewReview}
         storedDetails={this.state.storedDetails}
         currentPlace={this.state.currentPlace}
         ></BottomSection>
-      </div>
+      </div> : null}
       {/* <ReviewsWrapper></ReviewsWrapper> */}
       
      </div> 

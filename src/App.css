@@ -406,12 +406,12 @@ hr{
   font-size: 2rem;
 }
 .reviewEmptyDiv{
-  display:flex;
+  display:none;
   justify-content:center;
   align-items:center;
   margin:auto auto;
-  height:80%;
-  width:80%;
+  height:0;
+  width:0;
   background: rgba(255, 255, 255, 0.5);
 }
 .reviewImage{

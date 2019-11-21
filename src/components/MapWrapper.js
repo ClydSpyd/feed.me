@@ -54,7 +54,7 @@ class MapWrapper extends React.Component {
           <div className="mapInnerWrapper">
           <div className="RightBar" id='RightBar'>
             <RightBar
-            localPlaces={this.state.localPlaces} 
+              localPlaces={this.state.localPlaces} 
               places={this.props.places} 
               storedDetails={this.props.storedDetails}
               handleStoredDetails={this.props.handleStoredDetails}
@@ -62,7 +62,8 @@ class MapWrapper extends React.Component {
               handleDetailRequest={this.props.handleDetailRequest}
               handleCurrentPlace={this.props.handleCurrentPlace} 
               map={this.props.map} 
-              currentPlace={this.props.currentPlace}>
+              currentPlace={this.props.currentPlace}
+              showBottomSection={this.props.showBottomSection}>
             </RightBar>
           </div>
           <MapComp 

@@ -99,6 +99,7 @@ class ListItem extends React.Component {
   
   
   click = (map) => {
+    this.props.showBottomSection()
     console.log(document.getElementById('bottomWrapper'))
     const passId = this.props.place.place_id
     const myId = this.props.place.id

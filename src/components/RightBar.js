@@ -31,6 +31,7 @@ class RightBar extends React.Component{
                 handleDetailRequest={this.props.handleDetailRequest} 
                 map={this.props.map}
                 currentPlace={this.props.currentPlace}
+                showBottomSection = {this.props.showBottomSection}
               />
             )})
           }
