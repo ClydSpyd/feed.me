@@ -99,6 +99,7 @@ class ListItem extends React.Component {
   
   
   click = (map) => {
+    console.log(document.getElementById('bottomWrapper'))
     const passId = this.props.place.place_id
     const myId = this.props.place.id
     const myIdB = this.props.place.id+'B'

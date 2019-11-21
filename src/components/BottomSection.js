@@ -47,7 +47,7 @@ class BottomSection extends React.Component{
     </div>
     )}else{
       return(
-        <div className='reviewEmptyDiv'> no reviews to display</div>
+        <div className='reviewEmptyDiv'> Select a restaurant to display reveiws</div>
       )
     }
   }

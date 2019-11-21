@@ -298,8 +298,7 @@ class App extends React.Component {
         userLoc = {this.state.userLoc} /> 
        <div className='innerWrapper'>
          
-        <TopBar 
-        />
+        
         <MapWrapper 
         handleDetailRequest={this.handleDetailRequest}
         places={this.state.places}
